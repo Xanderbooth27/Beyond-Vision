@@ -1,0 +1,233 @@
+[
+  {
+    "purpose": "hero",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image9.png",
+    "filename": "hero-social-dominance.png",
+    "dimensions": {
+      "width": 1852,
+      "height": 816
+    },
+    "notes": "Hero main screenshot"
+  },
+  {
+    "purpose": "hero",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image18.png",
+    "filename": "hero-social-dominance-type.png",
+    "dimensions": {
+      "width": 1027,
+      "height": 449
+    },
+    "notes": "Hero typography crop"
+  },
+  {
+    "purpose": "hero",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image5.png",
+    "filename": "hero-supporting-copy-strip.png",
+    "dimensions": {
+      "width": 630,
+      "height": 150
+    },
+    "notes": "Hero supporting copy strip"
+  },
+  {
+    "purpose": "hero",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image20.png",
+    "filename": "hero-cta-strip.png",
+    "dimensions": {
+      "width": 739,
+      "height": 168
+    },
+    "notes": "Hero CTA strip"
+  },
+  {
+    "purpose": "stats",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image4.png",
+    "filename": "stats-band.png",
+    "dimensions": {
+      "width": 1606,
+      "height": 611
+    },
+    "notes": "Stats band"
+  },
+  {
+    "purpose": "services",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image24.png",
+    "filename": "services-grid-primary.png",
+    "dimensions": {
+      "width": 1336,
+      "height": 771
+    },
+    "notes": "Services grid primary"
+  },
+  {
+    "purpose": "services",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image3.png",
+    "filename": "services-grid-secondary.png",
+    "dimensions": {
+      "width": 1334,
+      "height": 761
+    },
+    "notes": "Services grid alternate"
+  },
+  {
+    "purpose": "services",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image26.png",
+    "filename": "services-grid-compact.png",
+    "dimensions": {
+      "width": 1233,
+      "height": 668
+    },
+    "notes": "Services grid compact"
+  },
+  {
+    "purpose": "brands",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image19.png",
+    "filename": "brand-strip-primary.png",
+    "dimensions": {
+      "width": 1519,
+      "height": 349
+    },
+    "notes": "Brand strip primary"
+  },
+  {
+    "purpose": "brands",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image17.png",
+    "filename": "brand-strip-secondary.png",
+    "dimensions": {
+      "width": 1518,
+      "height": 408
+    },
+    "notes": "Brand strip alternate"
+  },
+  {
+    "purpose": "talent",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image13.png",
+    "filename": "talent-cards-primary.png",
+    "dimensions": {
+      "width": 1380,
+      "height": 764
+    },
+    "notes": "Talent cards primary"
+  },
+  {
+    "purpose": "talent",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image6.png",
+    "filename": "talent-cards-secondary.png",
+    "dimensions": {
+      "width": 531,
+      "height": 291
+    },
+    "notes": "Talent cards alternate"
+  },
+  {
+    "purpose": "roster",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image12.png",
+    "filename": "creator-roster-grid.png",
+    "dimensions": {
+      "width": 1380,
+      "height": 730
+    },
+    "notes": "Creator roster grid"
+  },
+  {
+    "purpose": "campaigns",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image15.png",
+    "filename": "campaign-cards-primary.png",
+    "dimensions": {
+      "width": 985,
+      "height": 402
+    },
+    "notes": "Campaign cards primary"
+  },
+  {
+    "purpose": "campaigns",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image21.png",
+    "filename": "campaign-card-stats.png",
+    "dimensions": {
+      "width": 562,
+      "height": 364
+    },
+    "notes": "Campaign card stats"
+  },
+  {
+    "purpose": "campaigns",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image14.png",
+    "filename": "talent-work-carousel.png",
+    "dimensions": {
+      "width": 1110,
+      "height": 319
+    },
+    "notes": "Talent/work carousel"
+  },
+  {
+    "purpose": "blog",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image27.png",
+    "filename": "blog-cards-primary.png",
+    "dimensions": {
+      "width": 1734,
+      "height": 807
+    },
+    "notes": "Blog cards primary"
+  },
+  {
+    "purpose": "blog",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image23.png",
+    "filename": "blog-cards-secondary.png",
+    "dimensions": {
+      "width": 1725,
+      "height": 663
+    },
+    "notes": "Blog cards alternate"
+  },
+  {
+    "purpose": "faq",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image2.png",
+    "filename": "faq-section.png",
+    "dimensions": {
+      "width": 1110,
+      "height": 437
+    },
+    "notes": "FAQ section"
+  },
+  {
+    "purpose": "contact",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image8.png",
+    "filename": "contact-form-primary.png",
+    "dimensions": {
+      "width": 1713,
+      "height": 799
+    },
+    "notes": "Contact form primary"
+  },
+  {
+    "purpose": "contact",
+    "sourceDoc": "C:\\Users\\bende\\Downloads\\Cory (2).docx",
+    "sourceMedia": "word/media/image10.png",
+    "filename": "contact-form-secondary.png",
+    "dimensions": {
+      "width": 1726,
+      "height": 746
+    },
+    "notes": "Contact form alternate"
+  }
+]

@@ -1,0 +1,92 @@
+.wrap {
+  margin: 0 -2rem;
+  padding: 0 1rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding: 0 1.5rem 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    margin: 0 -1rem;
+    padding: 0 1rem 0.5rem;
+  }
+
+  .viewport {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marqueeSet {
+    gap: 16px;
+    padding-right: 16px;
+  }
+}
+
+.viewport {
+  position: relative;
+  max-width: 1220px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 6px 0 10px;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.track {
+  --marquee-duration: 40s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: talentMarquee var(--marquee-duration) linear infinite;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+.marqueeSet {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 24px;
+  flex-shrink: 0;
+  padding-right: 24px;
+}
+
+.cardWrap {
+  flex-shrink: 0;
+}
+
+@keyframes talentMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+    scrollbar-width: thin;
+  }
+
+  .track {
+    animation: none;
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+
+  .track:hover {
+    animation-play-state: running;
+  }
+}

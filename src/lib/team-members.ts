@@ -1,0 +1,8 @@
+export type TeamMember = {
+  id?: string;
+  name: string;
+  role: string;
+  email: string;
+  image?: string;
+  order?: number;
+};
