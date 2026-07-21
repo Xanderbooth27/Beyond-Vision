@@ -72,9 +72,9 @@ const WHY_PREVIEW_PARAGRAPHS = [
 ];
 
 const fallbackTestimonials: CreatorTestimonial[] = [
-  { name: "Creator Partner", brand: "Lifestyle Creator", quote: "Beyond Vision gave me structure around my brand deals and helped me turn opportunities into consistent income." },
-  { name: "Creator Partner", brand: "Gaming Creator", quote: "The team handles the backend properly, so I can stay focused on content and long-term growth." },
-  { name: "Creator Partner", brand: "Entertainment Creator", quote: "They understand creators, brands, and timing. Everything feels clearer and more professional." },
+  { name: "@_vcy", brand: "3.5M+ Followers", quote: "I wanted to say thank you for the exceptional job at management. Alone I was barely making social media livable. But with you and Beyond Vision, I've been able to make a living through socials! Love you guys!" },
+  { name: "@ayee_shaad", brand: "1.5M+ Followers", quote: "Beyond Vision has been loyal to me for nearly two years now and I'm more stable because of them, honest truth. Thank you!" },
+  { name: "@prettyxboi", brand: "3.5M+ Followers", quote: "Beyond Vision is amazing. They don't just bring collabs, they bring in partnerships that last! They're amazing and are great with communication and that's honestly one of the biggest parts as to why I am with them!" },
 ];
 
 export default function CreatorsLandingPage() {
