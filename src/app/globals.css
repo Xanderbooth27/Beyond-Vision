@@ -425,6 +425,20 @@ h3 {
   }
 }
 
+/* Homepage clip wall (2026-11-16): covers the whole hero edge to edge; the
+   wall brings its own dark glow behind the headline (HeroGrid.tsx). */
+.home-hero-centered .home-hero-grid-slot.home-hero-centered-grid-slot {
+  inset: 0;
+  left: 0;
+  right: 0;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+.home-hero-centered .home-hero-grid-slot.home-hero-centered-grid-slot::before,
+.home-hero-centered .home-hero-grid-slot.home-hero-centered-grid-slot::after {
+  display: none;
+}
+
 /* About hero: slower roster collage with strong edge feathering into page bg */
 .about-hero-grid-slot {
   opacity: 1;
