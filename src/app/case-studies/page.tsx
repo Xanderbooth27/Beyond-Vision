@@ -113,15 +113,6 @@ export default function CaseStudiesPage() {
     return [...driveItems, ...firebaseItems];
   }, [dbCampaigns]);
 
-  const featuredMetrics = useMemo(() => {
-    const values = driveCaseStudies.map((item) => item.metrics);
-    return [
-      { value: `${values.length}`, label: "Strong cases" },
-      { value: "36M+", label: "Verified views" },
-      { value: "1.5M+", label: "Total engagement" },
-    ];
-  }, []);
-
   return (
     <div style={{ minHeight: "100vh", background: "var(--bv-bg-deep)", color: "#F5F5F5", position: "relative", overflow: "hidden" }}>
       <AmbientBackground />
@@ -146,15 +137,6 @@ export default function CaseStudiesPage() {
               </button>
             </Link>
           </div>
-
-          <div className="case-hero-panel" aria-label="Case study performance summary">
-            {featuredMetrics.map((metric) => (
-              <div key={metric.label} className="case-hero-stat">
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
-              </div>
-            ))}
-          </div>
         </section>
 
         <Section title={pageContent.section_title} subtitle={pageContent.section_subtitle}>
@@ -171,7 +153,7 @@ export default function CaseStudiesPage() {
       <style>{`
         .case-hero {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+          grid-template-columns: minmax(0, 1fr);
           align-items: end;
           gap: 2rem;
           text-align: left;
