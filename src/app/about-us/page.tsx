@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import AboutMarquee from "@/components/AboutMarquee";
 import AmbientBackground from "@/components/AmbientBackground";
 import { BrandsTicker } from "@/components/BrandsTicker";
@@ -13,7 +12,6 @@ import Navbar from "@/components/Navbar";
 import { Section } from "@/components/Section";
 import { teamPlaceholders } from "@/lib/spec-data";
 import { getPageContent } from "@/lib/cms";
-import { getDb } from "@/lib/firebase";
 import type { TeamMember } from "@/lib/team-members";
 
 type AboutPageContent = {
@@ -51,21 +49,6 @@ export default function AboutPage() {
       "We don't believe in cookie-cutter campaigns. Every brand we work with receives a bespoke strategy, a dedicated team, and a partnership mindset focused on growth, trust, and long-term success to successfully generate ROI every campaign.",
     team: teamPlaceholders,
   });
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-
-  useEffect(() => {
-    const fetchTeam = async () => {
-      try {
-        const snap = await getDocs(query(collection(getDb(), "team_members"), orderBy("order", "asc")));
-        const data = snap.docs.map((docSnap) => ({ id: docSnap.id, ...docSnap.data() } as TeamMember));
-        if (data.length) setTeamMembers(data);
-      } catch (error) {
-        console.error("About page team fallback active:", error);
-      }
-    };
-    fetchTeam();
-  }, []);
-
   useEffect(() => {
     getPageContent("about").then((data) => {
       if (data) {
@@ -104,13 +87,6 @@ export default function AboutPage() {
       }
     });
   }, []);
-
-  const teamList =
-    teamMembers.length > 0
-      ? teamMembers
-      : Array.isArray(pageContent.team) && pageContent.team.length
-        ? pageContent.team
-        : teamPlaceholders;
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bv-bg-deep)", color: "#F5F5F5", position: "relative", overflow: "hidden" }}>
@@ -210,22 +186,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <Section title="Meet the Team" subtitle="TEAM">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "2rem" }}>
-            {teamList.map((member: TeamMember, index: number) => (
-              <Card key={`${member.role}-${index}`} padding="2rem" style={{ textAlign: "center" }}>
-                <div style={{ width: "100%", aspectRatio: "1", borderRadius: "24px", background: "var(--bv-surface-up)", border: "1px solid rgba(255,255,255,0.08)", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.35)", fontWeight: 900, letterSpacing: "2px", overflow: "hidden" }}>
-                  {member.image ? <img src={member.image} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : "PHOTO TBC"}
-                </div>
-                <h3 style={{ textTransform: "uppercase", marginBottom: "0.5rem" }}>{member.name}</h3>
-                <p style={{ color: "var(--accent)", fontWeight: 900, fontSize: "0.75rem", textTransform: "uppercase", marginBottom: "1rem" }}>{member.role}</p>
-                <a href={`mailto:${member.email}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.55)", fontSize: "0.8rem", fontWeight: 800 }}>
-                  <Mail size={14} /> {member.email}
-                </a>
-              </Card>
-            ))}
-          </div>
-        </Section>
       </main>
       <Footer />
 

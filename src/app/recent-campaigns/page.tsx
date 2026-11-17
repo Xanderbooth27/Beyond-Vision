@@ -21,9 +21,9 @@ export default function RecentCampaignsPage() {
   const [pageContent, setPageContent] = useState({
     hero_badge: "Campaign Content",
     hero_title: "Recent Campaigns",
-    hero_text: "Browse a few of our recently completed campaigns.",
-    archive_title: "Campaign archive",
-    archive_subtitle: "2026",
+    hero_text: "A selection of our recently completed campaigns.",
+    archive_title: "Selected campaigns",
+    archive_subtitle: "Highlights from 2026",
     empty_title: "No 2026 campaigns yet.",
     empty_text: "Add campaign videos to the 2026 archive when they are ready.",
   });
@@ -34,17 +34,15 @@ export default function RecentCampaignsPage() {
   useEffect(() => {
     getPageContent("recent-campaigns").then((data) => {
       if (data) {
-        let heroText = data.hero_text || "";
-        if (String(heroText).toLowerCase().includes("browse every 2026 campaign video")) {
-          heroText = "Browse a few of our recently completed campaigns.";
-        }
         setPageContent((prev) => ({
           ...prev,
           hero_badge: data.hero_badge || prev.hero_badge,
           hero_title: data.hero_title || prev.hero_title,
-          hero_text: heroText || prev.hero_text,
-          archive_title: data.archive_title || prev.archive_title,
-          archive_subtitle: data.archive_subtitle || prev.archive_subtitle,
+          // Xander, 2026-11-17: the archive reads as a selection, not every deal,
+          // so the wording here wins over the CMS.
+          hero_text: prev.hero_text,
+          archive_title: prev.archive_title,
+          archive_subtitle: prev.archive_subtitle,
           empty_title: data.empty_title || prev.empty_title,
           empty_text: data.empty_text || prev.empty_text,
         }));
@@ -87,16 +85,6 @@ export default function RecentCampaignsPage() {
             <p className="description-text" style={{ maxWidth: "660px", marginBottom: "2rem" }}>
               {pageContent.hero_text}
             </p>
-            <div className="campaign-hero-row">
-              <div>
-                <strong>{yearCampaigns.length}</strong>
-                <span>{CAMPAIGN_YEAR} campaigns</span>
-              </div>
-              <div>
-                <strong>{visibleCampaigns.length}</strong>
-                <span>Showing now</span>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -529,9 +517,14 @@ function CampaignContentCard({
   videoSrc?: string;
   onWatch: () => void;
 }) {
-  const canWatch = Boolean(videoSrc);
+  const postUrl = !videoSrc ? campaign.postUrl : undefined;
+  const canWatch = Boolean(videoSrc || postUrl);
 
   const handleWatch = () => {
+    if (postUrl) {
+      window.open(postUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     if (!canWatch) return;
     onWatch();
   };
@@ -558,7 +551,7 @@ function CampaignContentCard({
           <p>{campaign.year} / {campaign.month}</p>
         </div>
         <button type="button" className="campaign-watch-btn" onClick={handleWatch} disabled={!canWatch}>
-          {canWatch ? "Watch campaign" : "Video coming soon"}
+          {postUrl ? (/youtu/.test(postUrl) ? "Watch on YouTube" : "Watch on TikTok") : canWatch ? "Watch campaign" : "Video coming soon"}
         </button>
       </div>
     </article>

@@ -35,6 +35,8 @@ export type DriveCampaignContent = {
   thumbnail: string;
   /** Cloudflare R2 public URL after migration; overrides default campaigns/{id}.mp4 path. */
   videoUrl?: string;
+  /** The live post (TikTok / YouTube). Cards with no R2 video open this instead. */
+  postUrl?: string;
 };
 
 /** Public R2 base (no trailing slash). Set NEXT_PUBLIC_R2_PUBLIC_URL in .env.local */
@@ -51,6 +53,8 @@ export function campaignR2Key(id: string) {
 /** Resolved playback URL for in-site VideoPlayer. */
 export function campaignPlaybackUrl(campaign: DriveCampaignContent): string | undefined {
   if (campaign.videoUrl) return campaign.videoUrl;
+  // Live-post cards have no file on R2; they open the post itself.
+  if (campaign.postUrl) return undefined;
   const base = getR2PublicUrl();
   if (!base) return undefined;
   return `${base}/${campaignR2Key(campaign.id)}`;
@@ -88,6 +92,57 @@ export function driveThumbnailUrl(fileId: string, size = 1000) {
  * 3. Optional videoUrl override if the R2 key differs from campaigns/{id}.mp4
  */
 export const driveCampaignContent: DriveCampaignContent[] = [
+  // Completed campaigns from the manual sheet, best two per brand by views (2026-11-17).
+  {
+    id: "ayeeshaad-darryring",
+    title: "AyeeShaad x DarryRing",
+    creator: "AyeeShaad",
+    brand: "DarryRing",
+    month: "October",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/ayeeshaad-darryring.jpg",
+    postUrl: "https://www.tiktok.com/@ayee_shaad/video/7699694133870464270",
+  },
+  {
+    id: "flyguycarter-facemoji",
+    title: "Flyguycarter x Facemoji",
+    creator: "Flyguycarter",
+    brand: "Facemoji",
+    month: "September",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/flyguycarter-facemoji.jpg",
+    postUrl: "https://www.youtube.com/watch?v=QNcB7YuElPg",
+  },
+  {
+    id: "sizebysize-halara",
+    title: "Sizebysize x Halara",
+    creator: "Sizebysize",
+    brand: "Halara",
+    month: "August",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/sizebysize-halara.jpg",
+    postUrl: "https://www.youtube.com/watch?v=LEkt3cTd7os",
+  },
+  {
+    id: "ntswitches-exitlag",
+    title: "Ntswitches x ExitLag",
+    creator: "Ntswitches",
+    brand: "ExitLag",
+    month: "August",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/ntswitches-exitlag.jpg",
+    postUrl: "https://www.youtube.com/watch?v=fihcssC0gwo",
+  },
+  {
+    id: "nikscopes-polybuzz",
+    title: "Nikscopes x PolyBuzz",
+    creator: "Nikscopes",
+    brand: "PolyBuzz",
+    month: "July",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/nikscopes-polybuzz.jpg",
+    postUrl: "https://www.tiktok.com/@nikscopes/video/7660579415188835615",
+  },
   {
     id: "may-img-2330-a",
     title: "Campaign Upload",
@@ -388,5 +443,6 @@ export const driveCreators: DriveCreator[] = [
   { id: "sauceyaustin", name: "SauceyAustin", followers: "7.8M", driveFileId: "15tO6oju2VMm2V51lfD13CfCCNiNvabtN", tiktokUrl: "https://www.tiktok.com/@saucey_austin?lang=en", instagramUrl: "https://www.instagram.com/gxlden_a.team/" },
   { id: "nikeishalouise", name: "nikeishalouise", followers: "300K", driveFileId: "1F3vVbp42akT14nRarXCtfq9OmbwAfKHb", tiktokUrl: "https://www.tiktok.com/@nikeishalouise", instagramUrl: "https://www.instagram.com/nikeishalouise/?hl=en" },
   { id: "diarra-sylla", name: "Diarra Sylla", followers: "7M", driveFileId: "1kFfNxdVHg3syY72UrL99WGVMmEwXPybt", tiktokUrl: "https://www.tiktok.com/@diarrasyllalofficiel?lang=en", instagramUrl: "https://www.instagram.com/diarrasyllalofficiel/" },
+  { id: "ryan-hoffmann", name: "Ryan Hoffmann", followers: "1.2M", driveFileId: "local-ryan-hoffmann", tiktokUrl: "https://www.tiktok.com/@ryxnhxffmxnn" },
   { id: "ayeeshaad", name: "AyeeShaad", followers: "1.4M", driveFileId: "18zhEnFyfXgGsPH-0oc6Pd3o99O8OERkz", tiktokUrl: "https://www.tiktok.com/@ayee_shaad" },
 ];
