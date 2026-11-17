@@ -13,7 +13,7 @@ import { Section } from "@/components/Section";
 import { ActionCTA } from "@/components/CTA";
 import { getPageContent } from "@/lib/cms";
 import { sortCampaignsByRecency, uniqueCampaignsByIdentity } from "@/lib/campaign-archive";
-import { campaignPlaybackUrl, driveCampaignContent, type DriveCampaignContent } from "@/lib/drive-content";
+import { campaignPlaybackUrl, driveCampaignContent, driveOpenUrl, type DriveCampaignContent } from "@/lib/drive-content";
 
 const CAMPAIGN_YEAR = "2026";
 
@@ -517,7 +517,10 @@ function CampaignContentCard({
   videoSrc?: string;
   onWatch: () => void;
 }) {
-  const postUrl = !videoSrc ? campaign.postUrl : undefined;
+  // No stored video: open the live post, or the campaign's (public) Google Drive copy.
+  const postUrl = !videoSrc
+    ? campaign.postUrl || (campaign.driveFileId ? driveOpenUrl(campaign.driveFileId) : undefined)
+    : undefined;
   const canWatch = Boolean(videoSrc || postUrl);
 
   const handleWatch = () => {
@@ -551,7 +554,7 @@ function CampaignContentCard({
           <p>{campaign.year} / {campaign.month}</p>
         </div>
         <button type="button" className="campaign-watch-btn" onClick={handleWatch} disabled={!canWatch}>
-          {postUrl ? (/youtu/.test(postUrl) ? "Watch on YouTube" : "Watch on TikTok") : canWatch ? "Watch campaign" : "Video coming soon"}
+          {postUrl && /youtu/.test(postUrl) ? "Watch on YouTube" : postUrl && /tiktok/.test(postUrl) ? "Watch on TikTok" : canWatch ? "Watch campaign" : "Video coming soon"}
         </button>
       </div>
     </article>
