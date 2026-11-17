@@ -13,7 +13,7 @@ import { Section } from "@/components/Section";
 import { ActionCTA } from "@/components/CTA";
 import { getPageContent } from "@/lib/cms";
 import { sortCampaignsByRecency, uniqueCampaignsByIdentity } from "@/lib/campaign-archive";
-import { campaignPlaybackUrl, driveCampaignContent, driveOpenUrl, type DriveCampaignContent } from "@/lib/drive-content";
+import { campaignPlaybackUrl, driveCampaignContent, type DriveCampaignContent } from "@/lib/drive-content";
 
 const CAMPAIGN_YEAR = "2026";
 
@@ -29,7 +29,11 @@ export default function RecentCampaignsPage() {
   });
   const [search, setSearch] = useState("");
   const [playingCampaign, setPlayingCampaign] = useState<DriveCampaignContent | null>(null);
-  const archiveCampaigns = useMemo(() => uniqueCampaignsByIdentity(driveCampaignContent), []);
+  // Xander, 2026-11-17: only campaigns we can link to their real TikTok. No Drive copies.
+  const archiveCampaigns = useMemo(
+    () => uniqueCampaignsByIdentity(driveCampaignContent.filter((campaign) => /tiktok\.com/.test(campaign.postUrl || ""))),
+    []
+  );
 
   useEffect(() => {
     getPageContent("recent-campaigns").then((data) => {
@@ -528,10 +532,8 @@ function CampaignContentCard({
   videoSrc?: string;
   onWatch: () => void;
 }) {
-  // No stored video: open the live post, or the campaign's (public) Google Drive copy.
-  const postUrl = !videoSrc
-    ? campaign.postUrl || (campaign.driveFileId ? driveOpenUrl(campaign.driveFileId) : undefined)
-    : undefined;
+  // No stored video: open the live TikTok.
+  const postUrl = !videoSrc ? campaign.postUrl : undefined;
   const canWatch = Boolean(videoSrc || postUrl);
 
   const handleWatch = () => {

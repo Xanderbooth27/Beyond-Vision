@@ -201,6 +201,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "16P_-WcPwK3LjcCvjbiGYrWlUIilb4OoF",
     thumbnail: "/drive-content/campaign-content/ayeeshaad-emochi.png",
+    postUrl: "https://www.tiktok.com/@ayee_shaad/video/7637244178929437966",
+    stats: { views: "317K", likes: "5.8K", comments: "49" },
   },
   {
     id: "patrick-minor-pet-live",
@@ -211,6 +213,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "1fdXvK9WPxUGXVi7W0ENuhDr5D-iPamsC",
     thumbnail: "/drive-content/campaign-content/patrick-minor-pet-live.png",
+    postUrl: "https://www.tiktok.com/@ayypatrick/video/7604691278432832798",
+    stats: { views: "544K", likes: "53.3K", comments: "171" },
   },
   {
     id: "supercars-temu",
@@ -231,6 +235,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "1vMS_tECVA8Pcg03P29w_ahOyNU41dC6w",
     thumbnail: "/drive-content/campaign-content/studyfairy-terabox.png",
+    postUrl: "https://www.tiktok.com/@studyfairyy/video/7613610574836043039",
+    stats: { views: "2.7K", likes: "68", comments: "1" },
   },
   {
     id: "ry2ky-shein",
@@ -241,6 +247,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "1u8OgPdWB_Vh9LPfsx3LAHIGYFUQRuzu7",
     thumbnail: "/drive-content/campaign-content/ry2ky-shein.png",
+    postUrl: "https://www.tiktok.com/@ry2ky/video/7655083447198731533",
+    stats: { views: "29.1K", likes: "769", comments: "6" },
   },
   {
     id: "ayeeshaad-whiteout-survival",
@@ -251,6 +259,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "1nhqKHz1nnJRyIDN7VTq9DW72uLo7ZMAi",
     thumbnail: "/drive-content/campaign-content/ayeeshaad-whiteout-survival.png",
+    postUrl: "https://www.tiktok.com/@ayee_shaad/video/7571193712131329335",
+    stats: { views: "972K", likes: "51.4K", comments: "126" },
   },
   {
     id: "ayeeshaad-duet",
@@ -261,6 +271,8 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     driveFileId: "1WOKFL-tMsMVY9vRYkUP1yxnzgg_EN-as",
     thumbnail: "/drive-content/campaign-content/ayeeshaad-duet.png",
+    postUrl: "https://www.tiktok.com/@ayee_shaad/video/7532909619082038583",
+    stats: { views: "1M", likes: "32.3K", comments: "99" },
   },
   {
     id: "janette-huckleberry",
