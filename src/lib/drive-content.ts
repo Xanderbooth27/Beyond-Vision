@@ -37,6 +37,8 @@ export type DriveCampaignContent = {
   videoUrl?: string;
   /** The live post (TikTok / YouTube). Cards with no R2 video open this instead. */
   postUrl?: string;
+  /** Live post stats, shown on the card. */
+  stats?: { views: string; likes: string; comments: string };
 };
 
 /** Public R2 base (no trailing slash). Set NEXT_PUBLIC_R2_PUBLIC_URL in .env.local */
@@ -102,6 +104,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/xero-phantom-blade-zero.jpg",
     postUrl: "https://www.tiktok.com/@yexero/video/7691259616121933087",
+    stats: { views: "27.6K", likes: "88", comments: "7" },
   },
   {
     id: "ayeeshaad-gauth",
@@ -112,6 +115,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/ayeeshaad-gauth.jpg",
     postUrl: "https://www.tiktok.com/@ayee_shaad/video/7672895859633212686",
+    stats: { views: "5.8M", likes: "176.9K", comments: "235" },
   },
   {
     id: "ayeeshaad-darryring",
@@ -122,6 +126,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/ayeeshaad-darryring.jpg",
     postUrl: "https://www.tiktok.com/@ayee_shaad/video/7699694133870464270",
+    stats: { views: "27.4K", likes: "4.8K", comments: "31" },
   },
   {
     id: "flyguycarter-facemoji",
@@ -132,6 +137,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/flyguycarter-facemoji.jpg",
     postUrl: "https://www.youtube.com/watch?v=QNcB7YuElPg",
+    stats: { views: "27K", likes: "551", comments: "14" },
   },
   {
     id: "sizebysize-halara",
@@ -142,6 +148,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/sizebysize-halara.jpg",
     postUrl: "https://www.youtube.com/watch?v=LEkt3cTd7os",
+    stats: { views: "12.5K", likes: "488", comments: "24" },
   },
   {
     id: "ntswitches-exitlag",
@@ -152,6 +159,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/ntswitches-exitlag.jpg",
     postUrl: "https://www.youtube.com/watch?v=fihcssC0gwo",
+    stats: { views: "22.2K", likes: "608", comments: "104" },
   },
   {
     id: "nikscopes-polybuzz",
@@ -162,6 +170,7 @@ export const driveCampaignContent: DriveCampaignContent[] = [
     year: "2026",
     thumbnail: "/drive-content/campaign-content/nikscopes-polybuzz.jpg",
     postUrl: "https://www.tiktok.com/@nikscopes/video/7660579415188835615",
+    stats: { views: "10.1M", likes: "64.2K", comments: "852" },
   },
   {
     id: "may-img-2330-a",

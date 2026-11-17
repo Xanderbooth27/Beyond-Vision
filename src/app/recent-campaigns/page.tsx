@@ -405,6 +405,17 @@ export default function RecentCampaignsPage() {
           text-transform: uppercase;
         }
 
+        .campaign-card-body .campaign-stats {
+          margin-top: 0.35rem;
+          color: rgba(255, 255, 255, 0.55);
+          text-transform: none;
+          letter-spacing: 0;
+        }
+
+        .campaign-card-body .campaign-stats b {
+          color: #fff;
+        }
+
         .campaign-watch-btn {
           min-height: 40px;
           width: 100%;
@@ -552,6 +563,11 @@ function CampaignContentCard({
         <div>
           <h2>{campaign.title}</h2>
           <p>{campaign.year} / {campaign.month}</p>
+          {campaign.stats ? (
+            <p className="campaign-stats">
+              <b>{campaign.stats.views}</b> views · <b>{campaign.stats.likes}</b> likes · <b>{campaign.stats.comments}</b> comments
+            </p>
+          ) : null}
         </div>
         <button type="button" className="campaign-watch-btn" onClick={handleWatch} disabled={!canWatch}>
           {postUrl && /youtu/.test(postUrl) ? "Watch on YouTube" : postUrl && /tiktok/.test(postUrl) ? "Watch on TikTok" : canWatch ? "Watch campaign" : "Video coming soon"}
