@@ -94,6 +94,26 @@ export function driveThumbnailUrl(fileId: string, size = 1000) {
 export const driveCampaignContent: DriveCampaignContent[] = [
   // Completed campaigns from the manual sheet, best two per brand by views (2026-11-17).
   {
+    id: "xero-phantom-blade-zero",
+    title: "Xero x Phantom Blade Zero",
+    creator: "Xero",
+    brand: "Phantom Blade Zero",
+    month: "October",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/xero-phantom-blade-zero.jpg",
+    postUrl: "https://www.tiktok.com/@yexero/video/7691259616121933087",
+  },
+  {
+    id: "ayeeshaad-gauth",
+    title: "AyeeShaad x Gauth",
+    creator: "AyeeShaad",
+    brand: "Gauth",
+    month: "August",
+    year: "2026",
+    thumbnail: "/drive-content/campaign-content/ayeeshaad-gauth.jpg",
+    postUrl: "https://www.tiktok.com/@ayee_shaad/video/7672895859633212686",
+  },
+  {
     id: "ayeeshaad-darryring",
     title: "AyeeShaad x DarryRing",
     creator: "AyeeShaad",
