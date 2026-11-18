@@ -4,7 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import { DetailFrame, MoreCard } from "@/components/DetailPage";
 import PostBody from "@/components/PostBody";
 import { findStaticPost, staticPosts } from "@/lib/blog-static";
-import { caseImage, findCaseStudy } from "@/lib/public-pages";
 import { pageMeta, SITE_URL } from "@/lib/seo";
 import BlogPostClient from "./BlogPostClient";
 
@@ -18,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const p = findStaticPost((await params).id);
   if (!p) return {};
   const m = pageMeta(`/blog/${p.id}`, p.seoTitle, p.description);
-  return { ...m, title: { absolute: p.seoTitle }, openGraph: { ...m.openGraph, type: "article", title: p.seoTitle } };
+  return { ...m, title: { absolute: p.seoTitle }, openGraph: { ...m.openGraph, type: "article", title: p.seoTitle, images: [{ url: p.cover, width: 1200, height: 900, alt: p.title }] } };
 }
 
 const longDate = (d: string) => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -26,7 +25,6 @@ const longDate = (d: string) => new Date(d + "T12:00:00Z").toLocaleDateString("e
 export default async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const p = findStaticPost((await params).id);
   if (!p) return <BlogPostClient />;
-  const cover = findCaseStudy(p.caseId);
   const others = staticPosts.filter((o) => o.id !== p.id);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -34,7 +32,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
     headline: p.title,
     description: p.description,
     datePublished: p.date,
-    image: cover ? caseImage(cover) : undefined,
+    image: `${SITE_URL}${p.cover}`,
     author: { "@type": "Organization", name: "Beyond Vision" },
     publisher: { "@type": "Organization", name: "Beyond Vision", logo: `${SITE_URL}/logo_main.jpg` },
     mainEntityOfPage: `${SITE_URL}/blog/${p.id}`,
@@ -47,7 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
       <article>
         <div className="accent-badge" style={{ marginBottom: "1.25rem" }}>
           <span className="accent-badge-dot" />
-          {p.category}, {p.readTime}
+          {p.category}
         </div>
         <h1 className="title-xl" style={{ marginBottom: "0.9rem", maxWidth: "22ch" }}>{p.title}</h1>
         <p style={{ color: "rgba(255,255,255,0.5)", marginBottom: "2.2rem", fontSize: "0.9rem" }}>Beyond Vision, {longDate(p.date)}</p>
@@ -65,7 +63,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
         <h2>More from the blog</h2>
         <div className="dp-grid">
           {others.map((o) => (
-            <MoreCard key={o.id} href={`/blog/${o.id}`} title={o.title} sub={`${o.category}, ${o.readTime}`} />
+            <MoreCard key={o.id} href={`/blog/${o.id}`} title={o.title} sub={o.category} />
           ))}
         </div>
       </section>

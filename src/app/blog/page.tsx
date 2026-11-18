@@ -12,12 +12,10 @@ import { getPageContent } from "@/lib/cms";
 import { getDb } from "@/lib/firebase";
 import type { BlogPost } from "@/app/admin/BlogManager";
 import { staticPosts } from "@/lib/blog-static";
-import { caseImage, findCaseStudy } from "@/lib/public-pages";
 
 // Posts written into the site's code show first (and in the page Google reads);
 // any from the admin's database follow.
 const BUILT_IN: BlogPost[] = staticPosts.map((p) => {
-  const cover = findCaseStudy(p.caseId);
   return {
     id: p.id,
     title: p.title,
@@ -27,7 +25,7 @@ const BUILT_IN: BlogPost[] = staticPosts.map((p) => {
     readTime: p.readTime,
     excerpt: p.description,
     content: "",
-    imageUrl: cover ? caseImage(cover) : "",
+    imageUrl: p.cover,
   };
 });
 
@@ -159,9 +157,6 @@ function BlogCard({ post, delay }: { post: BlogPost; delay: number }) {
         <div style={{ display: "flex", gap: "0.8rem", alignItems: "center", flexWrap: "wrap", marginBottom: "1.4rem" }}>
           <span style={{ background: "var(--accent)", color: "#000", padding: "0.55rem 0.85rem", borderRadius: "10px", fontSize: "0.68rem", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.7px" }}>
             {post.category}
-          </span>
-          <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.74rem", fontWeight: 900, textTransform: "uppercase" }}>
-            {post.readTime}
           </span>
         </div>
         <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", lineHeight: 0.95, letterSpacing: "-0.04em", textTransform: "uppercase", maxWidth: "760px", marginBottom: "1rem" }}>
