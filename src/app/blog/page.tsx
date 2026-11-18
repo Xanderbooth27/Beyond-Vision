@@ -11,9 +11,28 @@ import Navbar from "@/components/Navbar";
 import { getPageContent } from "@/lib/cms";
 import { getDb } from "@/lib/firebase";
 import type { BlogPost } from "@/app/admin/BlogManager";
+import { staticPosts } from "@/lib/blog-static";
+import { caseImage, findCaseStudy } from "@/lib/public-pages";
+
+// Posts written into the site's code show first (and in the page Google reads);
+// any from the admin's database follow.
+const BUILT_IN: BlogPost[] = staticPosts.map((p) => {
+  const cover = findCaseStudy(p.caseId);
+  return {
+    id: p.id,
+    title: p.title,
+    category: p.category,
+    date: p.date,
+    author: "Beyond Vision",
+    readTime: p.readTime,
+    excerpt: p.description,
+    content: "",
+    imageUrl: cover ? caseImage(cover) : "",
+  };
+});
 
 export default function BlogHubPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>(BUILT_IN);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageContent, setPageContent] = useState({
@@ -39,7 +58,7 @@ export default function BlogHubPage() {
         const q = query(collection(getDb(), "blog_posts"), orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as BlogPost));
-        setPosts(data);
+        setPosts([...BUILT_IN, ...data.filter((d) => !BUILT_IN.some((b) => b.id === d.id))]);
       } catch (error) {
         console.error("Could not load blogs:", error);
       } finally {
