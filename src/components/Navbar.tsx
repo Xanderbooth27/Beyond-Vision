@@ -28,24 +28,21 @@ export default function Navbar() {
         };
     }, [mobileMenuOpen]);
 
+    // Every main page one click away (Xander, 2026-11-18). Only About keeps a
+    // small dropdown.
     const navLinks: NavLink[] = [
-        {
-            label: "About Us",
-            dropdown: [
-                { label: "What We Do", href: "/what-we-do" },
-                { label: "About Us", href: "/about-us" },
-                { label: "Blog", href: "/blog" },
-            ],
-        },
-        {
-            label: "Talent",
-            dropdown: [
-                { label: "For Creators", href: "/for-creators" },
-                { label: "For Brands", href: "/brands" },
-                { label: "Roster", href: "/roster" },
-            ],
-        },
+        { label: "For Brands", href: "/brands" },
+        { label: "For Creators", href: "/for-creators" },
+        { label: "Roster", href: "/roster" },
         { label: "Case Studies", href: "/case-studies" },
+        { label: "Blog", href: "/blog" },
+        {
+            label: "About",
+            dropdown: [
+                { label: "About Us", href: "/about-us" },
+                { label: "What We Do", href: "/what-we-do" },
+            ],
+        },
     ];
 
     const contactLink: NavLink = { label: "Contact", href: "/contact" };
