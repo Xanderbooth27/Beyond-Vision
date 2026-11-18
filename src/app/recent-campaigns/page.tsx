@@ -554,7 +554,7 @@ function CampaignContentCard({
         disabled={!canWatch}
         aria-label={canWatch ? `Watch ${campaign.title}` : `${campaign.title} — video not available yet`}
       >
-        <img src={campaign.thumbnail} alt="" />
+        <img src={campaign.thumbnail} alt={campaign.title} />
         <span className="campaign-scrim" aria-hidden />
         <span className="campaign-month-badge">{campaign.month}</span>
         <span className="campaign-play" aria-hidden>

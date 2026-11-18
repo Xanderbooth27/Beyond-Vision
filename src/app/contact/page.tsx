@@ -38,7 +38,20 @@ const STEP_HEADERS = [
 
 export default function ContactPage() {
     return (
-        <Suspense fallback={<div style={{ background: "var(--bv-bg-deep)", minHeight: "100vh" }} />}>
+        <Suspense
+            fallback={
+                <div style={{ background: "var(--bv-bg-deep)", minHeight: "100vh" }}>
+                    {/* What Google reads before the form loads. Not shown on screen. */}
+                    <div style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}>
+                        <h1>Contact Beyond Vision</h1>
+                        <p>
+                            Brands: plan a TikTok or Instagram creator campaign with us. Creators: apply to join our roster.
+                            Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+                        </p>
+                    </div>
+                </div>
+            }
+        >
             <ContactContent />
         </Suspense>
     );

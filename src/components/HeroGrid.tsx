@@ -41,6 +41,27 @@ function columnClips(c: number): string[] {
 
 export default function HeroGrid() {
     const [motionOk, setMotionOk] = useState(true);
+    // Speed (2026-11-18): the clips start after the page has loaded, so the
+    // headline shows first, and phones skip the two edge columns they hide
+    // anyway (they used to download them regardless).
+    const [ready, setReady] = useState(false);
+    const [wide, setWide] = useState(false);
+
+    useEffect(() => {
+        const mq = window.matchMedia("(min-width: 761px)");
+        const update = () => setWide(mq.matches);
+        update();
+        mq.addEventListener("change", update);
+        let t: ReturnType<typeof setTimeout> | undefined;
+        const go = () => { t = setTimeout(() => setReady(true), 300); };
+        if (document.readyState === "complete") go();
+        else window.addEventListener("load", go, { once: true });
+        return () => {
+            mq.removeEventListener("change", update);
+            window.removeEventListener("load", go);
+            if (t) clearTimeout(t);
+        };
+    }, []);
 
     useEffect(() => {
         const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -59,13 +80,15 @@ export default function HeroGrid() {
             `}</style>
             <div style={{ position: "absolute", inset: 0, display: "flex", gap: "10px", padding: "0 10px", opacity: CLIP_OPACITY }}>
                 {Array.from({ length: COLUMNS }, (_, c) => {
+                    const edge = c === 0 || c === COLUMNS - 1;
+                    if (edge && !wide) return null;
                     const clips = columnClips(c);
                     const strip = [...clips, ...clips]; // twice, so the loop has no seam
                     const speed = Math.round(LOOP_SECONDS * (0.9 + (c % 3) * 0.1));
                     return (
                         <div
                             key={c}
-                            className={c === 0 || c === COLUMNS - 1 ? "bv-hero-edge" : undefined}
+                            className={edge ? "bv-hero-edge" : undefined}
                             style={{ flex: "1 1 0", minWidth: 0, position: "relative", overflow: "hidden" }}
                         >
                             <div
@@ -83,7 +106,7 @@ export default function HeroGrid() {
                                         key={i}
                                         style={{ position: "relative", aspectRatio: "9 / 16", marginBottom: "10px", borderRadius: "14px", overflow: "hidden", background: "#141414" }}
                                     >
-                                        <video
+                                        {ready && <video
                                             src={src}
                                             autoPlay
                                             muted
@@ -91,7 +114,7 @@ export default function HeroGrid() {
                                             playsInline
                                             preload="auto"
                                             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                                        />
+                                        />}
                                     </div>
                                 ))}
                             </div>
