@@ -82,7 +82,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ id: 
         <h2>More case studies</h2>
         <div className="dp-grid">
           {others.map((o) => (
-            <MoreCard key={o.id} href={`/case-studies/${o.id}`} title={`${o.brand} x ${o.creator}`} sub={`${o.metrics.views} views, ${o.category}`} />
+            <MoreCard key={o.id} href={`/case-studies/${o.id}`} title={`${o.brand} x ${o.creator}`} sub={`${o.metrics.views} views, ${o.category}`} img={caseImage(o)} thumb />
           ))}
         </div>
       </section>

@@ -32,7 +32,8 @@ export function DetailFrame({ children }: { children: React.ReactNode }) {
         .dp-card:hover { border-color: rgba(255,255,255,0.25); }
         .dp-card-pfp { display: flex; align-items: center; gap: 0.85rem; }
         .dp-card-pfp img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; flex: none; background: #1c1c1c; }
-        .dp-card-pfp span { min-width: 0; }
+        .dp-card-pfp span { min-width: 0; overflow-wrap: anywhere; }
+        .dp-card-thumb img { width: 44px; height: 64px; border-radius: 8px; object-position: 50% 30%; }
         .dp-card small { display: block; color: rgba(255,255,255,0.55); margin-top: 0.25rem; font-size: 0.82rem; }
         @media (max-width: 900px) {
           .dp-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -53,10 +54,10 @@ export function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-export function MoreCard({ href, title, sub, img }: { href: string; title: string; sub: string; img?: string }) {
+export function MoreCard({ href, title, sub, img, thumb }: { href: string; title: string; sub: string; img?: string; thumb?: boolean }) {
   if (img) {
     return (
-      <Link href={href} className="dp-card dp-card-pfp">
+      <Link href={href} className={`dp-card dp-card-pfp${thumb ? " dp-card-thumb" : ""}`}>
         <img src={img} alt={title} loading="lazy" />
         <span>
           {title}

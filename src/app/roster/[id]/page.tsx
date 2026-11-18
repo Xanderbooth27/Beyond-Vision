@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { DetailFrame, MoreCard, Stat } from "@/components/DetailPage";
-import { casesForCreator, creatorImage, findCreator, rosterCreators } from "@/lib/public-pages";
+import { caseImage, casesForCreator, creatorImage, findCreator, rosterCreators } from "@/lib/public-pages";
 import { pageMeta } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -80,7 +80,7 @@ export default async function CreatorPage({ params }: { params: Promise<{ id: st
           <h2>Campaigns with {r.name}</h2>
           <div className="dp-grid">
             {cases.map((c) => (
-              <MoreCard key={c.id} href={`/case-studies/${c.id}`} title={`${c.brand} x ${c.creator}`} sub={`${c.metrics.views} views`} />
+              <MoreCard key={c.id} href={`/case-studies/${c.id}`} title={`${c.brand} x ${c.creator}`} sub={`${c.metrics.views} views`} img={caseImage(c)} thumb />
             ))}
           </div>
         </section>

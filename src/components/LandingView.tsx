@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { DetailFrame, MoreCard } from "@/components/DetailPage";
 import PostBody from "@/components/PostBody";
 import { findLanding } from "@/lib/landing-pages";
-import { caseStudies, creatorImage, rosterCreators } from "@/lib/public-pages";
+import { caseImage, caseStudies, creatorImage, rosterCreators } from "@/lib/public-pages";
 import { pageMeta } from "@/lib/seo";
 
 export function landingMeta(id: string): Metadata {
@@ -42,7 +42,7 @@ export function LandingView({ id }: { id: string }) {
         <div className="dp-grid">
           {p.forCreators
             ? rosterCreators.slice(0, 10).map((r) => <MoreCard key={r.id} href={`/roster/${r.id}`} title={r.name} sub={`${r.followers} followers`} img={creatorImage(r)} />)
-            : caseStudies.map((c) => <MoreCard key={c.id} href={`/case-studies/${c.id}`} title={`${c.brand} x ${c.creator}`} sub={`${c.metrics.views} views`} />)}
+            : caseStudies.map((c) => <MoreCard key={c.id} href={`/case-studies/${c.id}`} title={`${c.brand} x ${c.creator}`} sub={`${c.metrics.views} views`} img={caseImage(c)} thumb />)}
         </div>
       </section>
     </DetailFrame>
