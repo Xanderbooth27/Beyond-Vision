@@ -90,7 +90,7 @@ export default async function CreatorPage({ params }: { params: Promise<{ id: st
         <h2>More creators</h2>
         <div className="dp-grid">
           {others.map((o) => (
-            <MoreCard key={o.id} href={`/roster/${o.id}`} title={o.name} sub={`${o.followers} followers`} />
+            <MoreCard key={o.id} href={`/roster/${o.id}`} title={o.name} sub={`${o.followers} followers`} img={creatorImage(o)} />
           ))}
         </div>
       </section>

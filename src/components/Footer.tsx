@@ -52,6 +52,9 @@ export default function Footer() {
             links: [
                 { label: "For Brands", href: "/brands" },
                 { label: "For Creators", href: "/for-creators" },
+                { label: "Influencer Marketing Agency UK", href: "/influencer-marketing-agency-uk" },
+                { label: "TikTok Marketing Agency", href: "/tiktok-marketing-agency" },
+                { label: "Talent Management", href: "/talent-management-agency" },
                 { label: "What We Do For Creators", href: "/creators-what-we-offer" },
                 { label: "Why We Do It", href: "/creators-why-we-do-it" },
                 { label: "What We Do", href: "/what-we-do" },

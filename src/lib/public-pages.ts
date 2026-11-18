@@ -31,7 +31,7 @@ export function casesForCreator(r: DriveCreator) {
 }
 
 export function creatorImage(r: DriveCreator) {
-  return r.driveFileId.startsWith("local-") ? undefined : driveThumbnailUrl(r.driveFileId, 1200);
+  return driveThumbnailUrl(r.driveFileId, 1200); // every creator has a photo in public/drive-content/creators
 }
 
 export function caseImage(c: DriveCaseStudy) {

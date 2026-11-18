@@ -30,6 +30,9 @@ export function DetailFrame({ children }: { children: React.ReactNode }) {
         .dp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
         .dp-card { display: block; padding: 1rem 1.1rem; border-radius: 14px; background: #101010; border: 1px solid rgba(255,255,255,0.08); color: #fff; text-decoration: none; transition: border-color 0.2s; }
         .dp-card:hover { border-color: rgba(255,255,255,0.25); }
+        .dp-card-pfp { display: flex; align-items: center; gap: 0.85rem; }
+        .dp-card-pfp img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; flex: none; background: #1c1c1c; }
+        .dp-card-pfp span { min-width: 0; }
         .dp-card small { display: block; color: rgba(255,255,255,0.55); margin-top: 0.25rem; font-size: 0.82rem; }
         @media (max-width: 900px) {
           .dp-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -50,7 +53,18 @@ export function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-export function MoreCard({ href, title, sub }: { href: string; title: string; sub: string }) {
+export function MoreCard({ href, title, sub, img }: { href: string; title: string; sub: string; img?: string }) {
+  if (img) {
+    return (
+      <Link href={href} className="dp-card dp-card-pfp">
+        <img src={img} alt={title} loading="lazy" />
+        <span>
+          {title}
+          <small>{sub}</small>
+        </span>
+      </Link>
+    );
+  }
   return (
     <Link href={href} className="dp-card">
       {title}
