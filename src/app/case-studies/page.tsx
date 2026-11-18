@@ -257,10 +257,17 @@ function CampaignCard({ campaign }: { campaign: CaseCampaign }) {
       </Link>
 
       <div className="campaign-body">
-        <div className="campaign-meta">
-          <span>{campaign.source === "drive" ? "Drive verified" : "Live campaign"}</span>
-          <ExternalLink size={14} aria-hidden />
-        </div>
+        {campaign.source === "drive" ? (
+          <Link href={`/case-studies/${campaign.id}`} className="campaign-meta campaign-meta-link">
+            <span>Full case study</span>
+            <ArrowUpRight size={14} aria-hidden />
+          </Link>
+        ) : (
+          <div className="campaign-meta">
+            <span>Live campaign</span>
+            <ExternalLink size={14} aria-hidden />
+          </div>
+        )}
         <div className="metric-grid">
           <MetricTile value={campaign.metrics.views} label="Views" />
           <MetricTile value={campaign.metrics.likes} label="Likes" />
@@ -399,6 +406,9 @@ function CampaignCard({ campaign }: { campaign: CaseCampaign }) {
           letter-spacing: 0.08em;
           text-transform: uppercase;
         }
+
+        .campaign-meta-link { text-decoration: none; }
+        .campaign-meta-link:hover { color: #fff; }
 
         .metric-grid {
           display: grid;

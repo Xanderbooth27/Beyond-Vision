@@ -8,9 +8,11 @@ export const OG_IMAGE = { url: "/logo_main.jpg", width: 1080, height: 1080, alt:
 
 // Google title, description and canonical for one page. Pages are client
 // components, so each route folder has a small layout.tsx that exports this.
-export function pageMeta(path: string, title: string, description: string): Metadata {
+// absolute: for pages under a folder whose layout sets its own title (the
+// " | Beyond Vision" ending is then added here, not by the root template).
+export function pageMeta(path: string, title: string, description: string, absolute = false): Metadata {
   return {
-    title,
+    title: absolute ? { absolute: `${title} | Beyond Vision` } : title,
     description,
     alternates: { canonical: path },
     openGraph: { type: "website", siteName: "Beyond Vision", locale: "en_GB", title: `${title} | Beyond Vision`, description, url: path, images: [OG_IMAGE] },
