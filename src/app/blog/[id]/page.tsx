@@ -32,7 +32,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
     headline: p.title,
     description: p.description,
     datePublished: p.date,
-    image: `${SITE_URL}${p.cover}`,
+    image: p.cover,
     author: { "@type": "Organization", name: "Beyond Vision" },
     publisher: { "@type": "Organization", name: "Beyond Vision", logo: `${SITE_URL}/logo_main.jpg` },
     mainEntityOfPage: `${SITE_URL}/blog/${p.id}`,

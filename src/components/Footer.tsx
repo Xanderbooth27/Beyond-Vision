@@ -35,40 +35,31 @@ export default function Footer() {
         fetchContent();
     }, []);
 
+    // Trimmed 2026-11-18 (Xander: "way too many tabs at the bottom"): no
+    // duplicates, no dead links. Every page is still in the sitemap.
     const sections = [
         {
             title: "Navigation",
             links: [
                 { label: "Home", href: "/" },
-                { label: "Recent Campaigns", href: "/recent-campaigns" },
-                { label: "Work", href: "/work" },
-                { label: "Our Roster", href: "/roster" },
-                { label: "Our Talent", href: "/our-talent" },
+                { label: "Roster", href: "/roster" },
                 { label: "Case Studies", href: "/case-studies" },
+                { label: "Blog", href: "/blog" },
             ],
         },
         {
-            title: "Solutions",
+            title: "Services",
             links: [
-                { label: "For Brands", href: "/brands" },
-                { label: "For Creators", href: "/for-creators" },
-                { label: "Influencer Marketing Agency UK", href: "/influencer-marketing-agency-uk" },
-                { label: "TikTok Marketing Agency", href: "/tiktok-marketing-agency" },
+                { label: "Influencer Marketing UK", href: "/influencer-marketing-agency-uk" },
+                { label: "TikTok Marketing", href: "/tiktok-marketing-agency" },
                 { label: "Talent Management", href: "/talent-management-agency" },
-                { label: "What We Do For Creators", href: "/creators-what-we-offer" },
-                { label: "Why We Do It", href: "/creators-why-we-do-it" },
-                { label: "What We Do", href: "/what-we-do" },
-                { label: "About Us", href: "/about-us" },
             ],
         },
         {
             title: "Company",
             links: [
-                { label: "Blog", href: "/blog" },
-                { label: "Blogs", href: "/blogs" },
+                { label: "About Us", href: "/about-us" },
                 { label: "Contact", href: "/contact" },
-                { label: "Careers", href: "#" },
-                { label: "Terms", href: "#" },
             ],
         },
     ];

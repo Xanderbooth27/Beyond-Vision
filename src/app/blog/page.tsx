@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { ArrowUpRight, Search } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import AmbientBackground from "@/components/AmbientBackground";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -66,11 +66,13 @@ export default function BlogHubPage() {
     fetchPosts();
   }, []);
 
-  const filteredPosts = useMemo(() => {
-    const needle = searchQuery.trim().toLowerCase();
-    if (!needle) return posts;
-    return posts.filter((post) => [post.title, post.category, post.excerpt].some((value) => value?.toLowerCase().includes(needle)));
-  }, [posts, searchQuery]);
+  // Filter by category, like a magazine (Cory, 2026-11-18). "All" plus every
+  // category a post uses.
+  const categories = useMemo(() => Array.from(new Set(posts.map((p) => p.category).filter(Boolean))), [posts]);
+  const filteredPosts = useMemo(
+    () => (searchQuery ? posts.filter((post) => post.category === searchQuery) : posts),
+    [posts, searchQuery],
+  );
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bv-bg-deep)", color: "#F5F5F5", position: "relative", overflow: "hidden" }}>
@@ -87,19 +89,18 @@ export default function BlogHubPage() {
                 Practical influencer marketing insight for brands that want strategy, trust, and measurable growth.
               </p>
             </div>
-            <label className="blog-search-wrapper" style={{ width: "min(100%, 420px)", position: "relative" }}>
-              <Search size={18} style={{ position: "absolute", left: "1.25rem", top: "50%", transform: "translateY(-50%)", color: "rgba(255,255,255,0.32)" }} />
-              <input
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder={pageContent.search_placeholder}
-                style={{ width: "100%", padding: "1rem 1.25rem 1rem 3.25rem", borderRadius: "999px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none", fontWeight: 800 }}
-              />
-            </label>
           </div>
         </section>
 
         <section className="section-container" style={{ paddingTop: "1rem", paddingBottom: "5rem", position: "relative", zIndex: 10 }}>
+          <div className="blog-filter">
+            <span>Filter by:</span>
+            {["", ...categories].map((c) => (
+              <button key={c || "all"} type="button" className={searchQuery === c ? "on" : ""} onClick={() => setSearchQuery(c)}>
+                {c || "All"}
+              </button>
+            ))}
+          </div>
           <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "2rem" }}>
             {filteredPosts.map((post, index) => (
               <BlogCard key={post.id || post.title} post={post} delay={index * 0.04} />
@@ -107,7 +108,7 @@ export default function BlogHubPage() {
           </div>
           {!loading && !filteredPosts.length && (
             <div style={{ textAlign: "center", padding: "5rem 1rem", color: "rgba(255,255,255,0.36)", fontWeight: 900, textTransform: "uppercase", letterSpacing: "1px" }}>
-              {searchQuery ? "No blogs match that search." : "No blogs published yet."}
+              No blogs published yet.
             </div>
           )}
         </section>
@@ -116,6 +117,11 @@ export default function BlogHubPage() {
       <Footer />
 
       <style jsx>{`
+        .blog-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 2rem; }
+        .blog-filter span { color: rgba(255,255,255,0.6); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.4rem; }
+        .blog-filter button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 0.65rem 1rem; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; }
+        .blog-filter button:hover { border-color: rgba(255,255,255,0.45); }
+        .blog-filter button.on { background: var(--accent); color: #000; border-color: var(--accent); }
         @media (max-width: 900px) {
           .blog-grid {
             grid-template-columns: 1fr !important;
