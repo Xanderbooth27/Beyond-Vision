@@ -499,6 +499,10 @@ export default function Home() {
                             style={{ marginBottom: "1.1rem", maxWidth: "100%" }}
                         >
                             {pageContent.hero_title}
+                            {/* Read by Google and screen readers, not shown: says what we are. */}
+                            <span style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }}>
+                                {": Beyond Vision, UK creator management agency for TikTok and Instagram creators"}
+                            </span>
                         </motion.h1>
 
                         <p
