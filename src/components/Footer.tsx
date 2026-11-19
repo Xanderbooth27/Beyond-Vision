@@ -5,7 +5,14 @@ import { getPageContent } from "@/lib/cms";
 import { CONTACT_EMAIL } from "@/lib/content-defaults";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Mail, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Mail, Instagram, Linkedin } from "lucide-react";
+
+// The X logo (lucide only has the old Twitter bird).
+const XLogo = () => (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 import type { ReactNode } from "react";
 
 export default function Footer() {
@@ -113,7 +120,7 @@ export default function Footer() {
                         
                         <div style={{ display: "flex", gap: "1.2rem" }}>
                             <SocialIcon icon={<Instagram size={20} />} href="https://www.instagram.com/beyondvisionltd/" />
-                            <SocialIcon icon={<Twitter size={20} />} href="https://twitter.com" />
+                            <SocialIcon icon={<XLogo />} href="https://x.com" />
                             <SocialIcon icon={<Linkedin size={20} />} href="https://www.linkedin.com/company/beyond-vision-ltd/" />
                             <SocialIcon icon={<Mail size={20} />} href={`mailto:${CONTACT_EMAIL}`} />
                         </div>
@@ -150,15 +157,6 @@ export default function Footer() {
                         <span style={{ fontSize: "0.78rem", color: "var(--bv-faint)", fontWeight: 700, letterSpacing: "0.05em" }}>
                             {footerContent.copyright}
                         </span>
-                    </div>
-
-                    <div style={{ display: "flex", alignItems: "center", gap: "3rem" }} className="footer-coords">
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                            <div style={{ width: "8px", height: "8px", background: "#4ade80", borderRadius: "50%", boxShadow: "0 0 15px rgba(74, 222, 128, 0.3)" }} />
-                            <span style={{ fontSize: "0.7rem", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--bv-faint)" }}>
-                                {footerContent.hq_label} / {footerContent.hq_address}
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>
