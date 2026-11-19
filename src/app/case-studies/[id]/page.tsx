@@ -15,12 +15,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const c = findCaseStudy((await params).id);
   if (!c) return {};
-  return pageMeta(
+  const m = pageMeta(
     `/case-studies/${c.id}`,
     `${c.brand} x ${c.creator}: TikTok Campaign Case Study`,
     `How Beyond Vision's ${c.category.toLowerCase()} campaign for ${c.brand} with ${c.creator} reached ${c.metrics.views} views and ${c.metrics.likes} likes on TikTok.`,
     true,
   );
+  // Link previews and Google Images show this page's own picture, not the logo.
+  return { ...m, openGraph: { ...m.openGraph, images: [{ url: caseImage(c), alt: `${c.creator} x ${c.brand}` }] }, twitter: { ...m.twitter, images: [caseImage(c)] } };
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ id: string }> }) {

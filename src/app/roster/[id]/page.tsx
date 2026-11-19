@@ -15,12 +15,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const r = findCreator((await params).id);
   if (!r) return {};
-  return pageMeta(
+  const m = pageMeta(
     `/roster/${r.id}`,
     `${r.name}: Creator With ${r.followers} Followers`,
     `Book ${r.name} (${r.followers} followers) for TikTok and Instagram brand campaigns through Beyond Vision, a UK creator management agency.`,
     true,
   );
+  // Link previews and Google Images show this page's own picture, not the logo.
+  return { ...m, openGraph: { ...m.openGraph, images: [{ url: creatorImage(r), alt: r.name }] }, twitter: { ...m.twitter, images: [creatorImage(r)] } };
 }
 
 export default async function CreatorPage({ params }: { params: Promise<{ id: string }> }) {

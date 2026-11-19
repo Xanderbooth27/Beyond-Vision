@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Section } from "@/components/Section";
 import { ActionCTA } from "@/components/CTA";
+import { rosterCreators } from "@/lib/public-pages";
 import { getPageContent } from "@/lib/cms";
 import { CONTACT_EMAIL } from "@/lib/content-defaults";
 import {
@@ -198,6 +199,9 @@ export default function RosterPage() {
   );
 }
 
+// Each roster creator with their own page (lib/public-pages). The name links to it.
+const HAS_PAGE = new Set(rosterCreators.map((r) => r.id));
+
 function CreatorCard({ creator, index, onWorkWithMe }: { creator: PublicCreator; index: number; onWorkWithMe: () => void }) {
   return (
     <motion.article
@@ -213,7 +217,7 @@ function CreatorCard({ creator, index, onWorkWithMe }: { creator: PublicCreator;
 
       <div className="creator-info">
         <div>
-          <h2>{creator.name}</h2>
+          <h2>{HAS_PAGE.has(creator.id) ? <Link href={`/roster/${creator.id}`} className="creator-name-link">{creator.name}</Link> : creator.name}</h2>
           <p>{creator.followers} audience</p>
           <div className="creator-social-row">
             {creator.tiktokUrl && <SocialLink href={creator.tiktokUrl} label="TikTok" icon="tiktok" />}
@@ -236,6 +240,9 @@ function CreatorCard({ creator, index, onWorkWithMe }: { creator: PublicCreator;
           text-align: center;
           transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease;
         }
+
+        .creator-name-link { color: inherit; text-decoration: none; }
+        .creator-name-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
         .creator-card:hover {
           transform: translateY(-4px);
@@ -357,7 +364,7 @@ function CreatorModal({ creator, onClose }: { creator: PublicCreator; onClose: (
         <div className="modal-content">
           <div>
             <span className="modal-eyebrow">Exclusive creator</span>
-            <h2>{creator.name}</h2>
+            <h2>{HAS_PAGE.has(creator.id) ? <Link href={`/roster/${creator.id}`} className="creator-name-link">{creator.name}</Link> : creator.name}</h2>
             <p>{creator.followers} audience</p>
           </div>
 
